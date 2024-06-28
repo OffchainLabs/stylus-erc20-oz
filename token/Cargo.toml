@@ -1,0 +1,16 @@
+[package]
+name = "stylus-erc20-oz-token"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+openzeppelin-stylus.workspace = true
+alloy-primitives.workspace = true
+stylus-sdk.workspace = true
+stylus-proc.workspace = true
+mini-alloc.workspace = true
+
+[lib]
+crate-type = ["lib", "cdylib"]

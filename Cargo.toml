@@ -1,0 +1,53 @@
+[workspace]
+members = [
+  "token",
+  "deployer",
+]
+default-members = [
+  "token",
+]
+
+# Explicitly set the resolver to version 2, which is the default for packages
+# with edition >= 2021.
+# https://doc.rust-lang.org/edition-guide/rust-2021/default-cargo-resolver.html
+resolver = "2"
+
+[workspace.package]
+authors = ["TucksonDev"]
+edition = "2021"
+license = "MIT"
+keywords = ["arbitrum", "ethereum", "stylus", "alloy", "erc-20", "openzeppelin"]
+description = "Stylus ERC-20 implementation using OpenZeppelin library"
+
+[workspace.dependencies]
+openzeppelin-stylus = { git = "https://github.com/OpenZeppelin/rust-contracts-stylus", branch = "main" }
+stylus-sdk = { version = "0.5.0", default-features = false }
+stylus-proc = { version = "0.5.0", default-features = false }
+mini-alloc = "0.4.2"
+alloy-primitives = { version = "0.3.1", default-features = false }
+alloy = { version = "0.1.1", features = [
+  "contract",
+  "network",
+  "providers",
+  "provider-http",
+  "rpc-client",
+  "rpc-types-eth",
+  "signer-local",
+  "getrandom",
+] }
+koba = "0.1.0"
+tokio = { version = "1.12.0", features = ["full"] }
+
+[profile.release]
+codegen-units = 1
+panic = "abort"
+opt-level = "z"
+strip = true
+lto = true
+debug = false
+rpath = false
+debug-assertions = false
+incremental = false
+
+[profile.dev]
+panic = "abort"
